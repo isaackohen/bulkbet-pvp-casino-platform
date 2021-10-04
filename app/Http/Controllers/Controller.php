@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Redis;
 use App\User;
 use App\Jackpot;
 use App\Rooms;
 use App\Settings;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;

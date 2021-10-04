@@ -1,7 +1,7 @@
 var fs = require('fs'),
     options = {
-        key: fs.readFileSync('/etc/letsencrypt/live/techmain.ru/privkey.pem', 'utf8'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/techmain.ru/cert.pem', 'utf8')
+        key: fs.readFileSync('/etc/letsencrypt/live/pvp.bulk.bet/privkey.pem', 'utf8'),
+        cert: fs.readFileSync('/etc/letsencrypt/live/pvp.bulk.bet/cert.pem', 'utf8')
     },
     config          = require('./config.js'),
     app             = require('express')(),
@@ -182,6 +182,7 @@ function JackpotNewGame(room) {
         res = JSON.parse(res.body);
         io.sockets.emit('jackpot.newGame', res);
     }, function(res) {
+		console.log(res);
         log('[ROOM '+room+'] Ошибка в функции newGame');
 		setTimeout(JackpotNewGame, 1000, room);
     });

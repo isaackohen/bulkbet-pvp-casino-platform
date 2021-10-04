@@ -81,7 +81,7 @@
                         <div class="login">
                             <div class="avatar flex flex-center flex-align-center">
                                 <div class="img">
-                                    <a href="/logout" class="log-out">
+                                    <a onclick="window.location.href='/logout'" class="log-out">
                                         <i class="fas fa-sign-out-alt"></i>
                                     </a>
                                     <div class="image" style="background: url({{ $u->avatar }}) no-repeat center center / 100%;"></div>

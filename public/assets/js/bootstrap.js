@@ -41196,9 +41196,13 @@ __webpack_require__(/*! tooltipster */ "./node_modules/tooltipster/dist/js/toolt
  */
 
 
-__webpack_require__(/*! ./extern/cookie */ "./resources/assets/js/extern/cookie.js");
-
 __webpack_require__(/*! ./extern/notifyme */ "./resources/assets/js/extern/notifyme.js");
+
+__webpack_require__(/*! ./helpers/cookie */ "./resources/assets/js/helpers/cookie.js");
+
+__webpack_require__(/*! ./helpers/request */ "./resources/assets/js/helpers/request.js");
+
+__webpack_require__(/*! ./helpers/lang */ "./resources/assets/js/helpers/lang.js");
 
 $.mixManifest = function (asset) {
   var _window$_mixManifest$;
@@ -41216,7 +41220,7 @@ var assetsLoaded = false,
     successfullyLoaded = false;
 
 var app = function app() {
-  window.socket = io.connect(':49310');
+  window.socket = io.connect(':8005');
   window.socket.on('connect', function () {
     console.log('Successfully connected to socket server!');
   });
@@ -41236,31 +41240,6 @@ var unloadLoader = setInterval(function () {
     clearInterval(unloadLoader);
   }
 }, 10);
-
-/***/ }),
-
-/***/ "./resources/assets/js/extern/cookie.js":
-/*!**********************************************!*\
-  !*** ./resources/assets/js/extern/cookie.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-$.setCookie = function (key, value) {
-  var expiry = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 365;
-  var expires = new Date();
-  expires.setTime(expires.getTime() + expiry * 24 * 60 * 60 * 1000);
-  document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
-};
-
-$.getCookie = function (key) {
-  var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
-  return keyValue ? keyValue[2] : null;
-};
-
-$.eraseCookie = function (key) {
-  $.setCookie(key, $.getCookie(key), '-1');
-};
 
 /***/ }),
 
@@ -41403,6 +41382,181 @@ $.eraseCookie = function (key) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/helpers/cookie.js":
+/*!***********************************************!*\
+  !*** ./resources/assets/js/helpers/cookie.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$.setCookie = function (key, value) {
+  var expiry = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 365;
+  var expires = new Date();
+  expires.setTime(expires.getTime() + expiry * 24 * 60 * 60 * 1000);
+  document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
+};
+
+$.getCookie = function (key) {
+  var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
+  return keyValue ? keyValue[2] : null;
+};
+
+$.eraseCookie = function (key) {
+  $.setCookie(key, $.getCookie(key), '-1');
+};
+
+/***/ }),
+
+/***/ "./resources/assets/js/helpers/lang.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/helpers/lang.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$.lang = function (key, replace) {
+  var translation,
+      translationNotFound = true;
+
+  try {
+    translation = key.split('.').reduce(function (t, i) {
+      return t[i] || null;
+    }, window._translations[window._locale].php);
+    if (translation) translationNotFound = false;
+  } catch (e) {
+    translation = key;
+  }
+
+  if (translationNotFound) {
+    translation = window._translations[window._locale]['json'][key] ? window._translations[window._locale]['json'][key] : key;
+  }
+
+  _.forEach(replace, function (value, key) {
+    translation = translation.replace(':' + key, value);
+  });
+
+  return translation;
+};
+
+/***/ }),
+
+/***/ "./resources/assets/js/helpers/request.js":
+/*!************************************************!*\
+  !*** ./resources/assets/js/helpers/request.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * @param route API route. If starts without "/", then /api/ will be prepended.
+ * @param options GET requires array like ['foo', 'bar'] (optional)
+ *                POST requires objects like {'foo': 'value', 'bar': 'value'}
+ * @param type get|post
+ * @returns {Promise<unknown>}
+ */
+$.request = function (route) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'post';
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "".concat(!route.startsWith('/') ? '/api/' : '').concat(route + (type === 'get' ? arrayToRouteParams(options) : '')),
+      type: type.toUpperCase(),
+      data: type === 'get' ? [] : options,
+      dataType: 'json',
+      success: function success(json) {
+        if (json.message != null && json.errors != null) {
+          reject(0);
+          return;
+        }
+
+        if (json.error != null) {
+          console.warn('Rejected request:');
+          console.warn(json.error[0] + ' > ' + json.error[1]);
+          reject(json.error[0]); // Reject with error code as parameter
+
+          return;
+        }
+
+        console.log('Successful request:');
+        console.log(json);
+        resolve(json.response);
+      },
+      error: function error(data) {
+        if (data.status === 500) {
+          console.error('Failed request (500)');
+          $.error($.lang('error.code', {
+            'code': 500
+          }));
+          $.blockPlayButton(false);
+        } else if (data.status === 422) {
+          console.log('Failed validation (422):');
+          var json = JSON.parse(data.responseText);
+          console.log(json.message);
+          console.log(json.errors);
+          reject(json.errors);
+        } else {
+          console.error("Failed request (".concat(data.status, "):"));
+          console.error("Route ".concat(route + arrayToRouteParams(options), " is unreachable"));
+          reject(-1);
+        }
+      }
+    });
+  });
+};
+
+$.formDataRequest = function (route, options) {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+      url: "".concat(!route.startsWith('/') ? '/api/' : '').concat(route),
+      type: 'POST',
+      data: options,
+      contentType: false,
+      processData: false,
+      success: function success() {
+        resolve();
+      },
+      error: function error(data) {
+        reject(data);
+      }
+    });
+  });
+};
+
+$.parseValidation = function (json, keyTranslations) {
+  var result = '';
+
+  for (var i = 0; i < Object.keys(json).length; i++) {
+    result += "".concat(i === 0 ? '' : '<br>', " * ").concat($.lang(keyTranslations[Object.keys(json)[i]]));
+
+    for (var j = 0; j < Object.values(json)[i].length; j++) {
+      result += '<br>' + $.lang('error.' + Object.values(json)[i][j]);
+    }
+  }
+
+  return result;
+};
+
+$.setBearer = function (token) {
+  whispers.bearerToken = token;
+};
+
+var whispers = {
+  data: {},
+  bearerToken: null
+};
+
+function arrayToRouteParams(array) {
+  var result = '';
+
+  for (var i = 0; i < array.length; i++) {
+    result += "/".concat(array[i]);
+  }
+
+  return result;
+}
+
+/***/ }),
+
 /***/ 1:
 /*!************************************************!*\
   !*** multi ./resources/assets/js/bootstrap.js ***!
@@ -41410,7 +41564,7 @@ $.eraseCookie = function (key) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/assets/js/bootstrap.js */"./resources/assets/js/bootstrap.js");
+module.exports = __webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/js/bootstrap.js */"./resources/assets/js/bootstrap.js");
 
 
 /***/ }),

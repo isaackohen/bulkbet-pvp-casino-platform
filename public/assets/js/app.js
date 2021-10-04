@@ -2356,11 +2356,11 @@ $.routes = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/resources/assets/js/app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! /var/www/html/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! /var/www/html/resources/assets/sass/media.scss */"./resources/assets/sass/media.scss");
-__webpack_require__(/*! /var/www/html/resources/assets/sass/notifyme.scss */"./resources/assets/sass/notifyme.scss");
-module.exports = __webpack_require__(/*! /var/www/html/resources/assets/sass/tooltipster.scss */"./resources/assets/sass/tooltipster.scss");
+__webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/sass/media.scss */"./resources/assets/sass/media.scss");
+__webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/sass/notifyme.scss */"./resources/assets/sass/notifyme.scss");
+module.exports = __webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/sass/tooltipster.scss */"./resources/assets/sass/tooltipster.scss");
 
 
 /***/ })

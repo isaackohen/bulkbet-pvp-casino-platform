@@ -27,7 +27,7 @@ const io = require("socket.io-client");
 let assetsLoaded = false, successfullyLoaded = false;
 
 const app = function() {
-	window.socket = io.connect(':49310');
+	window.socket = io.connect(':8005');
 
 	window.socket.on('connect', () => {
 	  console.log('Successfully connected to socket server!');

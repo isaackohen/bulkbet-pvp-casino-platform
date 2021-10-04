@@ -138,7 +138,7 @@ $.on('/fair', function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/resources/assets/js/pages/Fair.js */"./resources/assets/js/pages/Fair.js");
+module.exports = __webpack_require__(/*! /home/ploi/pvp.bulk.bet/resources/assets/js/pages/Fair.js */"./resources/assets/js/pages/Fair.js");
 
 
 /***/ })

@@ -1,5 +1,5 @@
 var config = {
-    port: 8002,
-    domain: 'https://techmain.ru'
+    port: 8005,
+    domain: 'https://pvp.bulk.bet'
 }
 module.exports = config;

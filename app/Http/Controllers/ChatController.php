@@ -8,7 +8,7 @@ use App\User;
 use App\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Redis;
+use Illuminate\Support\Facades\Redis;
 
 class ChatController extends Controller
 {
