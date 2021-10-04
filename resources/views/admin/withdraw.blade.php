@@ -14,7 +14,7 @@
 			</div>
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
-                    <table id="datable_1" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
+                    <table id="datable_1" class="bootstrap-table bootstrap-table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -67,7 +67,7 @@
 			</div>
 			<div class="panel-wrapper collapse in">
 				<div class="panel-body">
-                    <table id="datable_2" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_2_info">
+                    <table id="datable_2" class="bootstrap-table bootstrap-table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_2_info">
                         <thead>
                             <tr>
                                 <th>ID</th>

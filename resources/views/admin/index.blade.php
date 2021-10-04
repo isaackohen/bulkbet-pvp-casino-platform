@@ -267,7 +267,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 370px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -305,7 +305,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 370px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -343,7 +343,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 370px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -582,7 +582,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 646px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -621,7 +621,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 370px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -657,7 +657,7 @@
                     </div>
                     <div class="panel-wrapper collapse in" style="height: 370px; overflow-x: hidden;">
                         <div class="panel-body row pa-0">
-                            <table class="table table-hover mb-0">
+                            <table class="bootstrap-table bootstrap-table-hover mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>

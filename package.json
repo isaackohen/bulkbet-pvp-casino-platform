@@ -28,7 +28,9 @@
         "vue-template-compiler": "^2.6.14",
         "webpack-bundle-analyzer": "^3.8.0",
         "webpack-obfuscator": "^0.28.2",
-        "postcss": "^8.2.8"
+        "postcss": "^8.2.8",
+        "tailwindcss": "^2.0",
+        "postcss-import": "^12.0"
     },
     "dependencies": {
         "compression-webpack-plugin": "^4.0.0",
