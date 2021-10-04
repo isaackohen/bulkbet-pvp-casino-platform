@@ -42,7 +42,7 @@
 							</div>
 						</div>
                     </div>
-                    <table id="datable_1" class="table table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
+                    <table id="datable_1" class="bootstrap-table bootstrap-table-hover display  pb-30 dataTable" role="grid" aria-describedby="datable_1_info">
                         <thead>
                             <tr>
                                 <th>ID</th>
