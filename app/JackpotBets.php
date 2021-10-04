@@ -16,11 +16,11 @@ class JackpotBets extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function game()
     {
-        return $this->belongsTo('App\Jackpot');
+        return $this->belongsTo(\App\Jackpot::class);
     }
 }

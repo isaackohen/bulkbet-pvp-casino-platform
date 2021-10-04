@@ -13,11 +13,11 @@ class BattleBets extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function game()
     {
-        return $this->belongsTo('App\Battle');
+        return $this->belongsTo(\App\Battle::class);
     }
 }

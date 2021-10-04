@@ -40,11 +40,11 @@ class Jackpot extends Model
 
     public function winner()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(\App\User::class);
     }
 
     public function bets()
     {
-        return $this->hasMany('App\JackpotBets');
+        return $this->hasMany(\App\JackpotBets::class);
     }
 }

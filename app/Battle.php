@@ -20,7 +20,7 @@ class Battle extends Model
 
     public function bets()
     {
-        return $this->hasMany('App\BattleBets');
+        return $this->hasMany(\App\BattleBets::class);
     }
 
     public function users()
