@@ -4,20 +4,19 @@
     "private": true,
     "scripts": {
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "npm run development -- --watch",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
         "axios": ">=0.21.1",
         "bootstrap": "^4.0.0",
-        "cross-env": "^7.0.3",
         "cssnano": "^4.1.10",
         "jquery": "^3.2",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^6.0.12",
         "lodash": "^4.17.13",
         "optimize-css-assets-webpack-plugin": "^5.0.3",
         "popper.js": "^1.12",
@@ -28,7 +27,8 @@
         "uglifyjs-webpack-plugin": "^2.2.0",
         "vue-template-compiler": "^2.6.14",
         "webpack-bundle-analyzer": "^3.8.0",
-        "webpack-obfuscator": "^0.28.2"
+        "webpack-obfuscator": "^0.28.2",
+        "postcss": "^8.2.8"
     },
     "dependencies": {
         "compression-webpack-plugin": "^4.0.0",
