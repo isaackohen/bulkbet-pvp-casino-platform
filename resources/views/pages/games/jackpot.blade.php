@@ -12,17 +12,13 @@
         </svg>
         Jackpot &nbsp;<span id="titleRoom"></span>
     </span>
-    <a href="/history/jackpot">История игр</a>
+    <a href="/history/jackpot">{{ __('platform.jackpot.button.history') }}</a>
 </div>
 
 <div class="content">
     <div class="alert" style="margin-bottom: 15px;">
-        <span>Активируйте Реферальный/Промо код и получите 5 рублей на баланс.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
-    </div>
-    <div class="alert" style="margin-bottom: 55px;">
-        <span>Максимальный вывод с бонусного баланса - 100р.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
+        <span>{{ __('platform.jackpot.warning.referral') }}</span>
+        <span class="alert-close tooltip" data-close="alert" title="{{ __('platform.close') }}">×</span>
     </div>
     <div class="slider" id="chouser_{{$room}}" style="display: none;">
         <div class="arrow top"></div>
@@ -56,20 +52,20 @@
             <div class="block">
                 <div class="bet methods-value bg">
                    @guest
-                    <span>Авторизуйтесь!</span>
+                    <span>{{ __('platform.login') }}</span>
                    @else
                    <div class="value">
-                        <input type="text" id="amount" placeholder="Введите сумму">
+                        <input type="text" id="amount" placeholder="{{ __('platform.wageramount') }}">
                    </div>
-                    <a  class="bet-b makeBet">Поставить</a>
+                    <a  class="bet-b makeBet">{{ __('platform.button.placebet') }}</a>
                     <ul>
                         <li><a  data-value="1" data-method="plus">+1</a></li>
                         <li><a  data-value="10" data-method="plus">+10</a></li>
                         <li><a  data-value="100" data-method="plus">+100</a></li>
                         <li><a  data-method="multiply" data-value="2">x2</a></li>
                         <li><a  data-method="divide" data-value="2">1/2</a></li>
-                        <li><a  data-method="all">макс</a></li>
-                        <li><a  data-method="clear">очистить</a></li>
+                        <li><a  data-method="all">{{ __('platform.button.max') }}</a></li>
+                        <li><a  data-method="clear">{{ __('platform.button.clearbet') }}</a></li>
                     </ul>
                     @endif
                 </div>
@@ -77,7 +73,7 @@
         </div>
         <div class="bets">
             <div class="users-in-game flex flex-center flex-align-center">
-                <span class="head">В игре</span>
+                <span class="head">{{ __('platform.jackpot.players') }}</span>
                 <div class="users" id="chances_{{$room}}">
                   @foreach($chances as $user)
                    <div class="user tooltip" title="{{ $user['username'] }}"> 
@@ -96,7 +92,7 @@
                             <div class="image" style="background: url({{ $bet->avatar }}) no-repeat center center / 100%;"></div>
                         </div>
                         <div class="username">{{ $bet->username }}</div>
-                        <div class="tickets"><span>билеты</span> <b>{{ round($bet->from) }} - {{ round($bet->to) }}</b></div>
+                        <div class="tickets"><span>{{ __('platform.jackpot.tickets') }}</span> <b>{{ round($bet->from) }} - {{ round($bet->to) }}</b></div>
                         <div class="amount points">{{ $bet->sum }} <i class="fas fa-coins"></i></div>
                     </div>
                     <div class="right">
@@ -107,7 +103,7 @@
                 @endif
             </div>
             <div class="fair-game">
-                <h4>Игра началась! Вносите свои депозиты!</h4>
+                <h4>{{ __('platform.jackpot.ready') }}</h4>
                 <p><b>#{{ $game->game_id }}</b> Hash round: <span id="hash_{{$room}}">{{$game->hash}}</span></p>
             </div>
         </div>

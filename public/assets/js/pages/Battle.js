@@ -291,7 +291,7 @@ function bisector(f) {
   let compare1 = f;
   let compare2 = f;
 
-  if (f.length === 1) {
+  if (f.length !== 2) {
     delta = (d, x) => f(d) - x;
     compare1 = _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"];
     compare2 = (d, x) => Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(f(d), x);
@@ -907,7 +907,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function groupSort(values, reduce, key) {
-  return (reduce.length === 1
+  return (reduce.length !== 2
     ? Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["rollup"])(values, reduce, key), (([ak, av], [bk, bv]) => Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(av, bv) || Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ak, bk)))
     : Object(_sort_js__WEBPACK_IMPORTED_MODULE_2__["default"])(Object(_group_js__WEBPACK_IMPORTED_MODULE_1__["default"])(values, key), (([ak, av], [bk, bv]) => reduce(av, bv) || Object(_ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"])(ak, bk))))
     .map(([key]) => key);
@@ -937,7 +937,7 @@ function identity(x) {
 /*!********************************************!*\
   !*** ./node_modules/d3-array/src/index.js ***!
   \********************************************/
-/*! exports provided: bisect, bisectRight, bisectLeft, bisectCenter, ascending, bisector, count, cross, cumsum, descending, deviation, extent, Adder, fsum, fcumsum, group, flatGroup, flatRollup, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, max, maxIndex, mean, median, merge, min, minIndex, mode, nice, pairs, permute, quantile, quantileSorted, quickselect, range, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet */
+/*! exports provided: bisect, bisectRight, bisectLeft, bisectCenter, ascending, bisector, count, cross, cumsum, descending, deviation, extent, Adder, fsum, fcumsum, group, flatGroup, flatRollup, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, max, maxIndex, mean, median, merge, min, minIndex, mode, nice, pairs, permute, quantile, quantileSorted, quickselect, range, rank, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1060,88 +1060,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _range_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./range.js */ "./node_modules/d3-array/src/range.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "range", function() { return _range_js__WEBPACK_IMPORTED_MODULE_29__["default"]; });
 
-/* harmony import */ var _least_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./least.js */ "./node_modules/d3-array/src/least.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "least", function() { return _least_js__WEBPACK_IMPORTED_MODULE_30__["default"]; });
+/* harmony import */ var _rank_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./rank.js */ "./node_modules/d3-array/src/rank.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "rank", function() { return _rank_js__WEBPACK_IMPORTED_MODULE_30__["default"]; });
 
-/* harmony import */ var _leastIndex_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./leastIndex.js */ "./node_modules/d3-array/src/leastIndex.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "leastIndex", function() { return _leastIndex_js__WEBPACK_IMPORTED_MODULE_31__["default"]; });
+/* harmony import */ var _least_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./least.js */ "./node_modules/d3-array/src/least.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "least", function() { return _least_js__WEBPACK_IMPORTED_MODULE_31__["default"]; });
 
-/* harmony import */ var _greatest_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./greatest.js */ "./node_modules/d3-array/src/greatest.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "greatest", function() { return _greatest_js__WEBPACK_IMPORTED_MODULE_32__["default"]; });
+/* harmony import */ var _leastIndex_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./leastIndex.js */ "./node_modules/d3-array/src/leastIndex.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "leastIndex", function() { return _leastIndex_js__WEBPACK_IMPORTED_MODULE_32__["default"]; });
 
-/* harmony import */ var _greatestIndex_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./greatestIndex.js */ "./node_modules/d3-array/src/greatestIndex.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "greatestIndex", function() { return _greatestIndex_js__WEBPACK_IMPORTED_MODULE_33__["default"]; });
+/* harmony import */ var _greatest_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./greatest.js */ "./node_modules/d3-array/src/greatest.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "greatest", function() { return _greatest_js__WEBPACK_IMPORTED_MODULE_33__["default"]; });
 
-/* harmony import */ var _scan_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./scan.js */ "./node_modules/d3-array/src/scan.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return _scan_js__WEBPACK_IMPORTED_MODULE_34__["default"]; });
+/* harmony import */ var _greatestIndex_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./greatestIndex.js */ "./node_modules/d3-array/src/greatestIndex.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "greatestIndex", function() { return _greatestIndex_js__WEBPACK_IMPORTED_MODULE_34__["default"]; });
 
-/* harmony import */ var _shuffle_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./shuffle.js */ "./node_modules/d3-array/src/shuffle.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return _shuffle_js__WEBPACK_IMPORTED_MODULE_35__["default"]; });
+/* harmony import */ var _scan_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./scan.js */ "./node_modules/d3-array/src/scan.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "scan", function() { return _scan_js__WEBPACK_IMPORTED_MODULE_35__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "shuffler", function() { return _shuffle_js__WEBPACK_IMPORTED_MODULE_35__["shuffler"]; });
+/* harmony import */ var _shuffle_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./shuffle.js */ "./node_modules/d3-array/src/shuffle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "shuffle", function() { return _shuffle_js__WEBPACK_IMPORTED_MODULE_36__["default"]; });
 
-/* harmony import */ var _sum_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./sum.js */ "./node_modules/d3-array/src/sum.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return _sum_js__WEBPACK_IMPORTED_MODULE_36__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "shuffler", function() { return _shuffle_js__WEBPACK_IMPORTED_MODULE_36__["shuffler"]; });
 
-/* harmony import */ var _ticks_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./ticks.js */ "./node_modules/d3-array/src/ticks.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ticks", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_37__["default"]; });
+/* harmony import */ var _sum_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./sum.js */ "./node_modules/d3-array/src/sum.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sum", function() { return _sum_js__WEBPACK_IMPORTED_MODULE_37__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tickIncrement", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_37__["tickIncrement"]; });
+/* harmony import */ var _ticks_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./ticks.js */ "./node_modules/d3-array/src/ticks.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ticks", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_38__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tickStep", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_37__["tickStep"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tickIncrement", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_38__["tickIncrement"]; });
 
-/* harmony import */ var _transpose_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./transpose.js */ "./node_modules/d3-array/src/transpose.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "transpose", function() { return _transpose_js__WEBPACK_IMPORTED_MODULE_38__["default"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tickStep", function() { return _ticks_js__WEBPACK_IMPORTED_MODULE_38__["tickStep"]; });
 
-/* harmony import */ var _variance_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./variance.js */ "./node_modules/d3-array/src/variance.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "variance", function() { return _variance_js__WEBPACK_IMPORTED_MODULE_39__["default"]; });
+/* harmony import */ var _transpose_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./transpose.js */ "./node_modules/d3-array/src/transpose.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "transpose", function() { return _transpose_js__WEBPACK_IMPORTED_MODULE_39__["default"]; });
 
-/* harmony import */ var _zip_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./zip.js */ "./node_modules/d3-array/src/zip.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return _zip_js__WEBPACK_IMPORTED_MODULE_40__["default"]; });
+/* harmony import */ var _variance_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./variance.js */ "./node_modules/d3-array/src/variance.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "variance", function() { return _variance_js__WEBPACK_IMPORTED_MODULE_40__["default"]; });
 
-/* harmony import */ var _every_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./every.js */ "./node_modules/d3-array/src/every.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "every", function() { return _every_js__WEBPACK_IMPORTED_MODULE_41__["default"]; });
+/* harmony import */ var _zip_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./zip.js */ "./node_modules/d3-array/src/zip.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "zip", function() { return _zip_js__WEBPACK_IMPORTED_MODULE_41__["default"]; });
 
-/* harmony import */ var _some_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./some.js */ "./node_modules/d3-array/src/some.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "some", function() { return _some_js__WEBPACK_IMPORTED_MODULE_42__["default"]; });
+/* harmony import */ var _every_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./every.js */ "./node_modules/d3-array/src/every.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "every", function() { return _every_js__WEBPACK_IMPORTED_MODULE_42__["default"]; });
 
-/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./filter.js */ "./node_modules/d3-array/src/filter.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return _filter_js__WEBPACK_IMPORTED_MODULE_43__["default"]; });
+/* harmony import */ var _some_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./some.js */ "./node_modules/d3-array/src/some.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "some", function() { return _some_js__WEBPACK_IMPORTED_MODULE_43__["default"]; });
 
-/* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./map.js */ "./node_modules/d3-array/src/map.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "map", function() { return _map_js__WEBPACK_IMPORTED_MODULE_44__["default"]; });
+/* harmony import */ var _filter_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./filter.js */ "./node_modules/d3-array/src/filter.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "filter", function() { return _filter_js__WEBPACK_IMPORTED_MODULE_44__["default"]; });
 
-/* harmony import */ var _reduce_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./reduce.js */ "./node_modules/d3-array/src/reduce.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return _reduce_js__WEBPACK_IMPORTED_MODULE_45__["default"]; });
+/* harmony import */ var _map_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./map.js */ "./node_modules/d3-array/src/map.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "map", function() { return _map_js__WEBPACK_IMPORTED_MODULE_45__["default"]; });
 
-/* harmony import */ var _reverse_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./reverse.js */ "./node_modules/d3-array/src/reverse.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "reverse", function() { return _reverse_js__WEBPACK_IMPORTED_MODULE_46__["default"]; });
+/* harmony import */ var _reduce_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./reduce.js */ "./node_modules/d3-array/src/reduce.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "reduce", function() { return _reduce_js__WEBPACK_IMPORTED_MODULE_46__["default"]; });
 
-/* harmony import */ var _sort_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./sort.js */ "./node_modules/d3-array/src/sort.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sort", function() { return _sort_js__WEBPACK_IMPORTED_MODULE_47__["default"]; });
+/* harmony import */ var _reverse_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./reverse.js */ "./node_modules/d3-array/src/reverse.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "reverse", function() { return _reverse_js__WEBPACK_IMPORTED_MODULE_47__["default"]; });
 
-/* harmony import */ var _difference_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./difference.js */ "./node_modules/d3-array/src/difference.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "difference", function() { return _difference_js__WEBPACK_IMPORTED_MODULE_48__["default"]; });
+/* harmony import */ var _sort_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./sort.js */ "./node_modules/d3-array/src/sort.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sort", function() { return _sort_js__WEBPACK_IMPORTED_MODULE_48__["default"]; });
 
-/* harmony import */ var _disjoint_js__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./disjoint.js */ "./node_modules/d3-array/src/disjoint.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "disjoint", function() { return _disjoint_js__WEBPACK_IMPORTED_MODULE_49__["default"]; });
+/* harmony import */ var _difference_js__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./difference.js */ "./node_modules/d3-array/src/difference.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "difference", function() { return _difference_js__WEBPACK_IMPORTED_MODULE_49__["default"]; });
 
-/* harmony import */ var _intersection_js__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./intersection.js */ "./node_modules/d3-array/src/intersection.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "intersection", function() { return _intersection_js__WEBPACK_IMPORTED_MODULE_50__["default"]; });
+/* harmony import */ var _disjoint_js__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./disjoint.js */ "./node_modules/d3-array/src/disjoint.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "disjoint", function() { return _disjoint_js__WEBPACK_IMPORTED_MODULE_50__["default"]; });
 
-/* harmony import */ var _subset_js__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./subset.js */ "./node_modules/d3-array/src/subset.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "subset", function() { return _subset_js__WEBPACK_IMPORTED_MODULE_51__["default"]; });
+/* harmony import */ var _intersection_js__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./intersection.js */ "./node_modules/d3-array/src/intersection.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "intersection", function() { return _intersection_js__WEBPACK_IMPORTED_MODULE_51__["default"]; });
 
-/* harmony import */ var _superset_js__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./superset.js */ "./node_modules/d3-array/src/superset.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "superset", function() { return _superset_js__WEBPACK_IMPORTED_MODULE_52__["default"]; });
+/* harmony import */ var _subset_js__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./subset.js */ "./node_modules/d3-array/src/subset.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "subset", function() { return _subset_js__WEBPACK_IMPORTED_MODULE_52__["default"]; });
 
-/* harmony import */ var _union_js__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./union.js */ "./node_modules/d3-array/src/union.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "union", function() { return _union_js__WEBPACK_IMPORTED_MODULE_53__["default"]; });
+/* harmony import */ var _superset_js__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./superset.js */ "./node_modules/d3-array/src/superset.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "superset", function() { return _superset_js__WEBPACK_IMPORTED_MODULE_53__["default"]; });
 
-/* harmony import */ var internmap__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! internmap */ "./node_modules/internmap/src/index.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InternMap", function() { return internmap__WEBPACK_IMPORTED_MODULE_54__["InternMap"]; });
+/* harmony import */ var _union_js__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./union.js */ "./node_modules/d3-array/src/union.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "union", function() { return _union_js__WEBPACK_IMPORTED_MODULE_54__["default"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InternSet", function() { return internmap__WEBPACK_IMPORTED_MODULE_54__["InternSet"]; });
+/* harmony import */ var internmap__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! internmap */ "./node_modules/internmap/src/index.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InternMap", function() { return internmap__WEBPACK_IMPORTED_MODULE_55__["InternMap"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "InternSet", function() { return internmap__WEBPACK_IMPORTED_MODULE_55__["InternSet"]; });
 
 
 
@@ -1156,6 +1159,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
  // Deprecated; use bin.
+
 
 
 
@@ -1844,6 +1848,46 @@ function range(start, stop, step) {
 
 /***/ }),
 
+/***/ "./node_modules/d3-array/src/rank.js":
+/*!*******************************************!*\
+  !*** ./node_modules/d3-array/src/rank.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rank; });
+/* harmony import */ var _ascending_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ascending.js */ "./node_modules/d3-array/src/ascending.js");
+/* harmony import */ var _sort_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sort.js */ "./node_modules/d3-array/src/sort.js");
+
+
+
+function rank(values, valueof = _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+  if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
+  let V = Array.from(values);
+  const R = new Float64Array(V.length);
+  if (valueof.length !== 2) V = V.map(valueof), valueof = _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"];
+  const compareIndex = (i, j) => valueof(V[i], V[j]);
+  let k, r;
+  Uint32Array
+    .from(V, (_, i) => i)
+    .sort(valueof === _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? (i, j) => Object(_sort_js__WEBPACK_IMPORTED_MODULE_1__["ascendingDefined"])(V[i], V[j]) : Object(_sort_js__WEBPACK_IMPORTED_MODULE_1__["compareDefined"])(compareIndex))
+    .forEach((j, i) => {
+      const c = compareIndex(j, k === undefined ? j : k);
+      if (c >= 0) {
+        if (k === undefined || c > 0) k = j, r = i;
+        R[j] = r;
+      } else {
+        R[j] = NaN;
+      }
+    });
+  return R;
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/d3-array/src/reduce.js":
 /*!*********************************************!*\
   !*** ./node_modules/d3-array/src/reduce.js ***!
@@ -1974,14 +2018,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return sort; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "compareDefined", function() { return compareDefined; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ascendingDefined", function() { return ascendingDefined; });
-/* harmony import */ var _permute_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./permute.js */ "./node_modules/d3-array/src/permute.js");
+/* harmony import */ var _ascending_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ascending.js */ "./node_modules/d3-array/src/ascending.js");
+/* harmony import */ var _permute_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./permute.js */ "./node_modules/d3-array/src/permute.js");
+
 
 
 function sort(values, ...F) {
   if (typeof values[Symbol.iterator] !== "function") throw new TypeError("values is not iterable");
   values = Array.from(values);
   let [f] = F;
-  if ((f && f.length === 1) || F.length > 1) {
+  if ((f && f.length !== 2) || F.length > 1) {
     const index = Uint32Array.from(values, (d, i) => i);
     if (F.length > 1) {
       F = F.map(f => values.map(f));
@@ -1995,12 +2041,13 @@ function sort(values, ...F) {
       f = values.map(f);
       index.sort((i, j) => ascendingDefined(f[i], f[j]));
     }
-    return Object(_permute_js__WEBPACK_IMPORTED_MODULE_0__["default"])(values, index);
+    return Object(_permute_js__WEBPACK_IMPORTED_MODULE_1__["default"])(values, index);
   }
-  return values.sort(f === undefined ? ascendingDefined : compareDefined(f));
+  return values.sort(compareDefined(f));
 }
 
-function compareDefined(compare) {
+function compareDefined(compare = _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+  if (compare === _ascending_js__WEBPACK_IMPORTED_MODULE_0__["default"]) return ascendingDefined;
   if (typeof compare !== "function") throw new TypeError("compare is not a function");
   return (a, b) => {
     const x = compare(a, b);
@@ -29700,7 +29747,7 @@ function defaultConstrain(transform, extent, translateExtent) {
 /*!**************************************!*\
   !*** ./node_modules/d3/src/index.js ***!
   \**************************************/
-/*! exports provided: bisect, bisectRight, bisectLeft, bisectCenter, ascending, bisector, count, cross, cumsum, descending, deviation, extent, Adder, fsum, fcumsum, group, flatGroup, flatRollup, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, max, maxIndex, mean, median, merge, min, minIndex, mode, nice, pairs, permute, quantile, quantileSorted, quickselect, range, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet, axisTop, axisRight, axisBottom, axisLeft, brush, brushX, brushY, brushSelection, chord, chordTranspose, chordDirected, ribbon, ribbonArrow, color, rgb, hsl, lab, hcl, lch, gray, cubehelix, contours, contourDensity, Delaunay, Voronoi, dispatch, drag, dragDisable, dragEnable, dsvFormat, csvParse, csvParseRows, csvFormat, csvFormatBody, csvFormatRows, csvFormatRow, csvFormatValue, tsvParse, tsvParseRows, tsvFormat, tsvFormatBody, tsvFormatRows, tsvFormatRow, tsvFormatValue, autoType, easeLinear, easeQuad, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubic, easeCubicIn, easeCubicOut, easeCubicInOut, easePoly, easePolyIn, easePolyOut, easePolyInOut, easeSin, easeSinIn, easeSinOut, easeSinInOut, easeExp, easeExpIn, easeExpOut, easeExpInOut, easeCircle, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounce, easeBounceIn, easeBounceOut, easeBounceInOut, easeBack, easeBackIn, easeBackOut, easeBackInOut, easeElastic, easeElasticIn, easeElasticOut, easeElasticInOut, blob, buffer, dsv, csv, tsv, image, json, text, xml, html, svg, forceCenter, forceCollide, forceLink, forceManyBody, forceRadial, forceSimulation, forceX, forceY, formatDefaultLocale, format, formatPrefix, formatLocale, formatSpecifier, FormatSpecifier, precisionFixed, precisionPrefix, precisionRound, geoArea, geoBounds, geoCentroid, geoCircle, geoClipAntimeridian, geoClipCircle, geoClipExtent, geoClipRectangle, geoContains, geoDistance, geoGraticule, geoGraticule10, geoInterpolate, geoLength, geoPath, geoAlbers, geoAlbersUsa, geoAzimuthalEqualArea, geoAzimuthalEqualAreaRaw, geoAzimuthalEquidistant, geoAzimuthalEquidistantRaw, geoConicConformal, geoConicConformalRaw, geoConicEqualArea, geoConicEqualAreaRaw, geoConicEquidistant, geoConicEquidistantRaw, geoEqualEarth, geoEqualEarthRaw, geoEquirectangular, geoEquirectangularRaw, geoGnomonic, geoGnomonicRaw, geoIdentity, geoProjection, geoProjectionMutator, geoMercator, geoMercatorRaw, geoNaturalEarth1, geoNaturalEarth1Raw, geoOrthographic, geoOrthographicRaw, geoStereographic, geoStereographicRaw, geoTransverseMercator, geoTransverseMercatorRaw, geoRotation, geoStream, geoTransform, cluster, hierarchy, Node, pack, packSiblings, packEnclose, partition, stratify, tree, treemap, treemapBinary, treemapDice, treemapSlice, treemapSliceDice, treemapSquarify, treemapResquarify, interpolate, interpolateArray, interpolateBasis, interpolateBasisClosed, interpolateDate, interpolateDiscrete, interpolateHue, interpolateNumber, interpolateNumberArray, interpolateObject, interpolateRound, interpolateString, interpolateTransformCss, interpolateTransformSvg, interpolateZoom, interpolateRgb, interpolateRgbBasis, interpolateRgbBasisClosed, interpolateHsl, interpolateHslLong, interpolateLab, interpolateHcl, interpolateHclLong, interpolateCubehelix, interpolateCubehelixLong, piecewise, quantize, path, polygonArea, polygonCentroid, polygonHull, polygonContains, polygonLength, quadtree, randomUniform, randomInt, randomNormal, randomLogNormal, randomBates, randomIrwinHall, randomExponential, randomPareto, randomBernoulli, randomGeometric, randomBinomial, randomGamma, randomBeta, randomWeibull, randomCauchy, randomLogistic, randomPoisson, randomLcg, scaleBand, scalePoint, scaleIdentity, scaleLinear, scaleLog, scaleSymlog, scaleOrdinal, scaleImplicit, scalePow, scaleSqrt, scaleRadial, scaleQuantile, scaleQuantize, scaleThreshold, scaleTime, scaleUtc, scaleSequential, scaleSequentialLog, scaleSequentialPow, scaleSequentialSqrt, scaleSequentialSymlog, scaleSequentialQuantile, scaleDiverging, scaleDivergingLog, scaleDivergingPow, scaleDivergingSqrt, scaleDivergingSymlog, tickFormat, schemeCategory10, schemeAccent, schemeDark2, schemePaired, schemePastel1, schemePastel2, schemeSet1, schemeSet2, schemeSet3, schemeTableau10, interpolateBrBG, schemeBrBG, interpolatePRGn, schemePRGn, interpolatePiYG, schemePiYG, interpolatePuOr, schemePuOr, interpolateRdBu, schemeRdBu, interpolateRdGy, schemeRdGy, interpolateRdYlBu, schemeRdYlBu, interpolateRdYlGn, schemeRdYlGn, interpolateSpectral, schemeSpectral, interpolateBuGn, schemeBuGn, interpolateBuPu, schemeBuPu, interpolateGnBu, schemeGnBu, interpolateOrRd, schemeOrRd, interpolatePuBuGn, schemePuBuGn, interpolatePuBu, schemePuBu, interpolatePuRd, schemePuRd, interpolateRdPu, schemeRdPu, interpolateYlGnBu, schemeYlGnBu, interpolateYlGn, schemeYlGn, interpolateYlOrBr, schemeYlOrBr, interpolateYlOrRd, schemeYlOrRd, interpolateBlues, schemeBlues, interpolateGreens, schemeGreens, interpolateGreys, schemeGreys, interpolatePurples, schemePurples, interpolateReds, schemeReds, interpolateOranges, schemeOranges, interpolateCividis, interpolateCubehelixDefault, interpolateRainbow, interpolateWarm, interpolateCool, interpolateSinebow, interpolateTurbo, interpolateViridis, interpolateMagma, interpolateInferno, interpolatePlasma, create, creator, local, matcher, namespace, namespaces, pointer, pointers, select, selectAll, selection, selector, selectorAll, style, window, arc, area, line, pie, areaRadial, radialArea, lineRadial, radialLine, pointRadial, linkHorizontal, linkVertical, linkRadial, symbol, symbols, symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye, curveBasisClosed, curveBasisOpen, curveBasis, curveBumpX, curveBumpY, curveBundle, curveCardinalClosed, curveCardinalOpen, curveCardinal, curveCatmullRomClosed, curveCatmullRomOpen, curveCatmullRom, curveLinearClosed, curveLinear, curveMonotoneX, curveMonotoneY, curveNatural, curveStep, curveStepAfter, curveStepBefore, stack, stackOffsetExpand, stackOffsetDiverging, stackOffsetNone, stackOffsetSilhouette, stackOffsetWiggle, stackOrderAppearance, stackOrderAscending, stackOrderDescending, stackOrderInsideOut, stackOrderNone, stackOrderReverse, timeInterval, timeMillisecond, timeMilliseconds, utcMillisecond, utcMilliseconds, timeSecond, timeSeconds, utcSecond, utcSeconds, timeMinute, timeMinutes, timeHour, timeHours, timeDay, timeDays, timeWeek, timeWeeks, timeSunday, timeSundays, timeMonday, timeMondays, timeTuesday, timeTuesdays, timeWednesday, timeWednesdays, timeThursday, timeThursdays, timeFriday, timeFridays, timeSaturday, timeSaturdays, timeMonth, timeMonths, timeYear, timeYears, utcMinute, utcMinutes, utcHour, utcHours, utcDay, utcDays, utcWeek, utcWeeks, utcSunday, utcSundays, utcMonday, utcMondays, utcTuesday, utcTuesdays, utcWednesday, utcWednesdays, utcThursday, utcThursdays, utcFriday, utcFridays, utcSaturday, utcSaturdays, utcMonth, utcMonths, utcYear, utcYears, utcTicks, utcTickInterval, timeTicks, timeTickInterval, timeFormatDefaultLocale, timeFormat, timeParse, utcFormat, utcParse, timeFormatLocale, isoFormat, isoParse, now, timer, timerFlush, timeout, interval, transition, active, interrupt, zoom, zoomTransform, zoomIdentity, ZoomTransform */
+/*! exports provided: bisect, bisectRight, bisectLeft, bisectCenter, ascending, bisector, count, cross, cumsum, descending, deviation, extent, Adder, fsum, fcumsum, group, flatGroup, flatRollup, groups, index, indexes, rollup, rollups, groupSort, bin, histogram, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, max, maxIndex, mean, median, merge, min, minIndex, mode, nice, pairs, permute, quantile, quantileSorted, quickselect, range, rank, least, leastIndex, greatest, greatestIndex, scan, shuffle, shuffler, sum, ticks, tickIncrement, tickStep, transpose, variance, zip, every, some, filter, map, reduce, reverse, sort, difference, disjoint, intersection, subset, superset, union, InternMap, InternSet, axisTop, axisRight, axisBottom, axisLeft, brush, brushX, brushY, brushSelection, chord, chordTranspose, chordDirected, ribbon, ribbonArrow, color, rgb, hsl, lab, hcl, lch, gray, cubehelix, contours, contourDensity, Delaunay, Voronoi, dispatch, drag, dragDisable, dragEnable, dsvFormat, csvParse, csvParseRows, csvFormat, csvFormatBody, csvFormatRows, csvFormatRow, csvFormatValue, tsvParse, tsvParseRows, tsvFormat, tsvFormatBody, tsvFormatRows, tsvFormatRow, tsvFormatValue, autoType, easeLinear, easeQuad, easeQuadIn, easeQuadOut, easeQuadInOut, easeCubic, easeCubicIn, easeCubicOut, easeCubicInOut, easePoly, easePolyIn, easePolyOut, easePolyInOut, easeSin, easeSinIn, easeSinOut, easeSinInOut, easeExp, easeExpIn, easeExpOut, easeExpInOut, easeCircle, easeCircleIn, easeCircleOut, easeCircleInOut, easeBounce, easeBounceIn, easeBounceOut, easeBounceInOut, easeBack, easeBackIn, easeBackOut, easeBackInOut, easeElastic, easeElasticIn, easeElasticOut, easeElasticInOut, blob, buffer, dsv, csv, tsv, image, json, text, xml, html, svg, forceCenter, forceCollide, forceLink, forceManyBody, forceRadial, forceSimulation, forceX, forceY, formatDefaultLocale, format, formatPrefix, formatLocale, formatSpecifier, FormatSpecifier, precisionFixed, precisionPrefix, precisionRound, geoArea, geoBounds, geoCentroid, geoCircle, geoClipAntimeridian, geoClipCircle, geoClipExtent, geoClipRectangle, geoContains, geoDistance, geoGraticule, geoGraticule10, geoInterpolate, geoLength, geoPath, geoAlbers, geoAlbersUsa, geoAzimuthalEqualArea, geoAzimuthalEqualAreaRaw, geoAzimuthalEquidistant, geoAzimuthalEquidistantRaw, geoConicConformal, geoConicConformalRaw, geoConicEqualArea, geoConicEqualAreaRaw, geoConicEquidistant, geoConicEquidistantRaw, geoEqualEarth, geoEqualEarthRaw, geoEquirectangular, geoEquirectangularRaw, geoGnomonic, geoGnomonicRaw, geoIdentity, geoProjection, geoProjectionMutator, geoMercator, geoMercatorRaw, geoNaturalEarth1, geoNaturalEarth1Raw, geoOrthographic, geoOrthographicRaw, geoStereographic, geoStereographicRaw, geoTransverseMercator, geoTransverseMercatorRaw, geoRotation, geoStream, geoTransform, cluster, hierarchy, Node, pack, packSiblings, packEnclose, partition, stratify, tree, treemap, treemapBinary, treemapDice, treemapSlice, treemapSliceDice, treemapSquarify, treemapResquarify, interpolate, interpolateArray, interpolateBasis, interpolateBasisClosed, interpolateDate, interpolateDiscrete, interpolateHue, interpolateNumber, interpolateNumberArray, interpolateObject, interpolateRound, interpolateString, interpolateTransformCss, interpolateTransformSvg, interpolateZoom, interpolateRgb, interpolateRgbBasis, interpolateRgbBasisClosed, interpolateHsl, interpolateHslLong, interpolateLab, interpolateHcl, interpolateHclLong, interpolateCubehelix, interpolateCubehelixLong, piecewise, quantize, path, polygonArea, polygonCentroid, polygonHull, polygonContains, polygonLength, quadtree, randomUniform, randomInt, randomNormal, randomLogNormal, randomBates, randomIrwinHall, randomExponential, randomPareto, randomBernoulli, randomGeometric, randomBinomial, randomGamma, randomBeta, randomWeibull, randomCauchy, randomLogistic, randomPoisson, randomLcg, scaleBand, scalePoint, scaleIdentity, scaleLinear, scaleLog, scaleSymlog, scaleOrdinal, scaleImplicit, scalePow, scaleSqrt, scaleRadial, scaleQuantile, scaleQuantize, scaleThreshold, scaleTime, scaleUtc, scaleSequential, scaleSequentialLog, scaleSequentialPow, scaleSequentialSqrt, scaleSequentialSymlog, scaleSequentialQuantile, scaleDiverging, scaleDivergingLog, scaleDivergingPow, scaleDivergingSqrt, scaleDivergingSymlog, tickFormat, schemeCategory10, schemeAccent, schemeDark2, schemePaired, schemePastel1, schemePastel2, schemeSet1, schemeSet2, schemeSet3, schemeTableau10, interpolateBrBG, schemeBrBG, interpolatePRGn, schemePRGn, interpolatePiYG, schemePiYG, interpolatePuOr, schemePuOr, interpolateRdBu, schemeRdBu, interpolateRdGy, schemeRdGy, interpolateRdYlBu, schemeRdYlBu, interpolateRdYlGn, schemeRdYlGn, interpolateSpectral, schemeSpectral, interpolateBuGn, schemeBuGn, interpolateBuPu, schemeBuPu, interpolateGnBu, schemeGnBu, interpolateOrRd, schemeOrRd, interpolatePuBuGn, schemePuBuGn, interpolatePuBu, schemePuBu, interpolatePuRd, schemePuRd, interpolateRdPu, schemeRdPu, interpolateYlGnBu, schemeYlGnBu, interpolateYlGn, schemeYlGn, interpolateYlOrBr, schemeYlOrBr, interpolateYlOrRd, schemeYlOrRd, interpolateBlues, schemeBlues, interpolateGreens, schemeGreens, interpolateGreys, schemeGreys, interpolatePurples, schemePurples, interpolateReds, schemeReds, interpolateOranges, schemeOranges, interpolateCividis, interpolateCubehelixDefault, interpolateRainbow, interpolateWarm, interpolateCool, interpolateSinebow, interpolateTurbo, interpolateViridis, interpolateMagma, interpolateInferno, interpolatePlasma, create, creator, local, matcher, namespace, namespaces, pointer, pointers, select, selectAll, selection, selector, selectorAll, style, window, arc, area, line, pie, areaRadial, radialArea, lineRadial, radialLine, pointRadial, linkHorizontal, linkVertical, linkRadial, symbol, symbols, symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye, curveBasisClosed, curveBasisOpen, curveBasis, curveBumpX, curveBumpY, curveBundle, curveCardinalClosed, curveCardinalOpen, curveCardinal, curveCatmullRomClosed, curveCatmullRomOpen, curveCatmullRom, curveLinearClosed, curveLinear, curveMonotoneX, curveMonotoneY, curveNatural, curveStep, curveStepAfter, curveStepBefore, stack, stackOffsetExpand, stackOffsetDiverging, stackOffsetNone, stackOffsetSilhouette, stackOffsetWiggle, stackOrderAppearance, stackOrderAscending, stackOrderDescending, stackOrderInsideOut, stackOrderNone, stackOrderReverse, timeInterval, timeMillisecond, timeMilliseconds, utcMillisecond, utcMilliseconds, timeSecond, timeSeconds, utcSecond, utcSeconds, timeMinute, timeMinutes, timeHour, timeHours, timeDay, timeDays, timeWeek, timeWeeks, timeSunday, timeSundays, timeMonday, timeMondays, timeTuesday, timeTuesdays, timeWednesday, timeWednesdays, timeThursday, timeThursdays, timeFriday, timeFridays, timeSaturday, timeSaturdays, timeMonth, timeMonths, timeYear, timeYears, utcMinute, utcMinutes, utcHour, utcHours, utcDay, utcDays, utcWeek, utcWeeks, utcSunday, utcSundays, utcMonday, utcMondays, utcTuesday, utcTuesdays, utcWednesday, utcWednesdays, utcThursday, utcThursdays, utcFriday, utcFridays, utcSaturday, utcSaturdays, utcMonth, utcMonths, utcYear, utcYears, utcTicks, utcTickInterval, timeTicks, timeTickInterval, timeFormatDefaultLocale, timeFormat, timeParse, utcFormat, utcParse, timeFormatLocale, isoFormat, isoParse, now, timer, timerFlush, timeout, interval, transition, active, interrupt, zoom, zoomTransform, zoomIdentity, ZoomTransform */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29793,6 +29840,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "quickselect", function() { return d3_array__WEBPACK_IMPORTED_MODULE_0__["quickselect"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "range", function() { return d3_array__WEBPACK_IMPORTED_MODULE_0__["range"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "rank", function() { return d3_array__WEBPACK_IMPORTED_MODULE_0__["rank"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "least", function() { return d3_array__WEBPACK_IMPORTED_MODULE_0__["least"]; });
 

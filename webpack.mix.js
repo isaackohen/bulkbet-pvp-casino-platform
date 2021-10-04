@@ -59,8 +59,3 @@ mix.webpackConfig({
         onBuildEnd: []
     })]
 });
-
-mix.postCss('resources/css/tailwind.css', 'public/css/app.css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-]);

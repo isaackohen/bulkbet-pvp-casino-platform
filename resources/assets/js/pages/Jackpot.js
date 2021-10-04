@@ -1,5 +1,10 @@
 $.on('/', function() {
 	
+	function _getTransformOffset(e) {
+		var t = e.css("transform").split(",");
+		return 6 === t.length ? parseInt(t[4]) : 16 === t.length ? parseInt(t[12]) : 0
+	}
+	
 	$('.methods-value ul li a').on('click', function (event) {
 		let value = parseFloat($('#amount').val()) || 0,
 			all = $('.leftside .profile-block .balance .money').attr('data-balance'),

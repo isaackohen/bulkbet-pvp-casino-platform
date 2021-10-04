@@ -27,15 +27,15 @@ const io = require("socket.io-client");
 let assetsLoaded = false, successfullyLoaded = false;
 
 const app = function() {
-	window.socket = io.connect(':8005');
+    window.socket = io.connect(':8005');
 
-	window.socket.on('connect', () => {
-	  console.log('Successfully connected to socket server!');
-	});
+    window.socket.on('connect', () => {
+      console.log('Successfully connected to socket server!');
+    });
 
-	$.getScript($.mixManifest('/assets/js/app.js'), function () {
-		successfullyLoaded = true;
-	});
+    $.getScript($.mixManifest('/assets/js/app.js'), function () {
+        successfullyLoaded = true;
+    });
 };
 
 app();
@@ -46,8 +46,8 @@ $(window).on('load', function() {
 
 const unloadLoader = setInterval(function() {
     if(assetsLoaded && successfullyLoaded) {
-		$(document).trigger('bootstrap:load');
-		$(".preloading-wrapper").fadeOut(0);
-		clearInterval(unloadLoader);
+        $(document).trigger('bootstrap:load');
+        $(".preloading-wrapper").fadeOut(0);
+        clearInterval(unloadLoader);
     }
 }, 10);

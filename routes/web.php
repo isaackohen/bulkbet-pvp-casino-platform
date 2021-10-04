@@ -140,3 +140,7 @@ Route::prefix('api')->middleware('secretKey')->group(function () {
     Route::post('/getMerchBalance', [AdminController::class, 'getMerchBalance']);
     Route::post('/getParam', [AdminController::class, 'getParam']);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

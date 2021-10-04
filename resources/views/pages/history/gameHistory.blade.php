@@ -1,8 +1,8 @@
 <div class="head-game">
 	<span class="game-name">Jackpot</span>
 	<ul>
-		<li><a href="/jackpot/history">История</a></li>
-		<li><a href="/">Играть</a></li>
+		<li><a href="/jackpot/history">{{ __('platform.jackpot.history') }}</a></li>
+		<li><a href="/">{{ __('platform.back') }}</a></li>
 	</ul>
 </div>
 <div class="game-info">

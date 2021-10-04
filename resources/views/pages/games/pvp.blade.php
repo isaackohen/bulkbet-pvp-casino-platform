@@ -1,4 +1,4 @@
-<div class="title flex flex-between flex-align-center">
+    <div class="title flex flex-between flex-align-center">
     <span>
         <svg class="icon">
             <svg id="icon-flip" viewBox="0 0 511.999 511.999" width="100%" height="100%">
@@ -22,18 +22,18 @@
         </svg>
         PvP
     </span>
-    <a href="/history/pvp">История игр</a>
+    <a href="/history/pvp">{{ __('platform.pvp.button.history') }}</a>
 </div>
 
 <div class="content">
     <div class="alert">
-        <span>Активируйте Реферальный/Промо код и получите 5 рублей на баланс.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
+        <span>{{ __('platform.pvp.warning.referral') }}</span>
+        <span class="alert-close tooltip" data-close="alert" title="{{ __('platform.close') }}">×</span>
     </div>
     <div class="game-content pvp flex flex-between flex-wrap">
        @auth
         <div class="create-game methods-value flex flex-start flex-align-center">
-            <input type="text" id="amount" placeholder="Введите сумму...">
+            <input type="text" id="amount" placeholder="{{ __('platform.wageramount') }}">
             <ul>
                 <li><a  data-value="1" data-method="plus">+1</a></li>
                 <li><a  data-value="10" data-method="plus">+10</a></li>
@@ -41,10 +41,10 @@
                 <li><a  data-value="1000" data-method="plus">+1000</a></li>
                 <li><a  data-value="2" data-method="multiply">x2</a></li>
                 <li><a  data-value="2" data-method="divide">1/2</a></li>
-                <li><a  data-method="all">макс</a></li>
-                <li><a  data-method="clear">очистить</a></li>
+                <li><a  data-method="all">{{ __('platform.button.max') }}</a></li>
+                <li><a  data-method="clear">{{ __('platform.button.clearbet') }}</a></li>
             </ul>
-            <a  class="create makeBet" onclick="$.createRoom()">Создать игру</a>
+            <a  class="create makeBet" onclick="$.createRoom()">{{ __('platform.pvp.creategame') }}</a>
         </div>
         @endauth
         <div class="coinflip-games">
@@ -68,22 +68,22 @@
                                         <img src="/assets/images/telegram.png">
                                     </div>
                                     <div class="info">
-                                        <span class="user-link">Ожидаем...</span>
+                                        <span class="user-link">{{ __('platform.pvp.waitingopponent') }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="go">
 								@guest
-								<a class="joinGame" onclick="$.wnoty({position: 'top-right',type: 'error',message: 'Авторизуйтесь!'});">Присоединиться</a>
+								<a class="joinGame" onclick="$.wnoty({position: 'top-right',type: 'error',message: '{{ __('platform.login') }}!'});">{{ __('platform.pvp.joingame') }}</a>
 								@else
-                                <a class="joinGame" onclick="$.joinRoom({{$room['id']}})">Присоединиться</a>
+                                <a class="joinGame" onclick="$.joinRoom({{$room['id']}})">{{ __('platform.pvp.joingame') }}</a>
 								@endguest
                             </div>
                             <div class="info block">
                                 <span><i class="fas fa-coins"></i> {{$room['price']}}</span>
                             </div>
                             <div class="status block">
-                                <div class="game-status tooltip" title="Ожидаем..."></div>
+                                <div class="game-status tooltip" title="{{ __('platform.pvp.waitingopponent') }}"></div>
                             </div>
                         </div>
                     </div>
@@ -128,14 +128,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="win-ticket tooltip" title="Счастливый билет">
+                            <div class="win-ticket tooltip" title="{{ __('platform.pvp.winningticket') }}">
                                 <span>{{$end->winner_ticket}} <i class="fas fa-ticket-alt"></i></span>
                             </div>
                             <div class="info block">
                                 <span><i class="fas fa-coins"></i> {{$end->price}}</span>
                             </div>
                             <div class="status block">
-                                <div class="game-status done tooltip" title="Игра завершена"></div>
+                                <div class="game-status done tooltip" title="{{ __('platform.pvp.gamefinished') }}"></div>
                             </div>
                         </div>
                     </div>

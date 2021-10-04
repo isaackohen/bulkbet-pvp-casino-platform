@@ -1,5 +1,5 @@
 <div class="title flex flex-between flex-align-center">
-    <span>История игр</span>
+    <span>{{ __('platform.jackpot.history') }}</span>
     <div class="r">
 		<ul class="room-selector">
 			@foreach($rooms as $r)
@@ -14,10 +14,6 @@
 </div>
 
 <div class="content">
-    <div class="alert">
-        <span>Активируйте Реферальный/Промо код и получите 5 рублей на баланс.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
-    </div>
 	@foreach($rooms as $r)
    <div class="historyTable">
        @foreach($history as $game) @if($game['room'] == $r->name)
@@ -34,18 +30,18 @@
                             </div>
                             <div class="info">
                                 <span class="user-link">{{$game['winner_name']}}</span>
-                                <p>Шанс: {{$game['winner_chance']}}%</p>
+                                <p>{{ __('platform.jackpot.winchance') }}: {{$game['winner_chance']}}%</p>
                             </div>
                         </div>
                     </div>
-                    <div class="win-ticket tooltip" title="Победный билет">
+                    <div class="win-ticket tooltip" title="{{ __('platform.jackpot.winningticket') }}">
                         <span>{{$game['winner_ticket']}} <i class="fas fa-ticket-alt"></i></span>
                     </div>
                     <div class="info block">
                         <span><i class="fas fa-coins"></i> {{$game['winner_sum']}}</span>
                     </div>
                     <div class="status block">
-                        <a href="/fair/{{$game['hash']}}" class="check">Проверить</a>
+                        <a href="/fair/{{$game['hash']}}" class="check">{{ __('platform.verifyfairness') }}</a>
                     </div>
                 </div>
             </div>

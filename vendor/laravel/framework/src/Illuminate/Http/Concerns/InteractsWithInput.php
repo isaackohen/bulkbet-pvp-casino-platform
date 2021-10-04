@@ -4,9 +4,9 @@ namespace Illuminate\Http\Concerns;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use SplFileInfo;
 use stdClass;
+use Symfony\Component\VarDumper\VarDumper;
 
 trait InteractsWithInput
 {
@@ -54,8 +54,12 @@ trait InteractsWithInput
     {
         $header = $this->header('Authorization', '');
 
-        if (Str::startsWith($header, 'Bearer ')) {
-            return Str::substr($header, 7);
+        $position = strrpos($header, 'Bearer');
+
+        if ($position !== false) {
+            $header = substr($header, $position + 7);
+
+            return strpos($header, ',') !== false ? strstr(',', $header, true) : $header;
         }
     }
 
@@ -107,6 +111,27 @@ trait InteractsWithInput
     }
 
     /**
+     * Apply the callback if the request contains the given input item key.
+     *
+     * @param  string  $key
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return $this|mixed
+     */
+    public function whenHas($key, callable $callback, callable $default = null)
+    {
+        if ($this->has($key)) {
+            return $callback(data_get($this->all(), $key)) ?: $this;
+        }
+
+        if ($default) {
+            return $default();
+        }
+
+        return $this;
+    }
+
+    /**
      * Determine if the request contains a non-empty value for an input item.
      *
      * @param  string|array  $key
@@ -118,6 +143,25 @@ trait InteractsWithInput
 
         foreach ($keys as $value) {
             if ($this->isEmptyString($value)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Determine if the request contains an empty value for an input item.
+     *
+     * @param  string|array  $key
+     * @return bool
+     */
+    public function isNotFilled($key)
+    {
+        $keys = is_array($key) ? $key : func_get_args();
+
+        foreach ($keys as $value) {
+            if (! $this->isEmptyString($value)) {
                 return false;
             }
         }
@@ -142,6 +186,27 @@ trait InteractsWithInput
         }
 
         return false;
+    }
+
+    /**
+     * Apply the callback if the request contains a non-empty value for the given input item key.
+     *
+     * @param  string  $key
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return $this|mixed
+     */
+    public function whenFilled($key, callable $callback, callable $default = null)
+    {
+        if ($this->filled($key)) {
+            return $callback(data_get($this->all(), $key)) ?: $this;
+        }
+
+        if ($default) {
+            return $default();
+        }
+
+        return $this;
     }
 
     /**
@@ -229,6 +294,17 @@ trait InteractsWithInput
     public function boolean($key = null, $default = false)
     {
         return filter_var($this->input($key, $default), FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * Retrieve input from the request as a collection.
+     *
+     * @param  string|null  $key
+     * @return \Illuminate\Support\Collection
+     */
+    public function collect($key = null)
+    {
+        return collect($this->input($key));
     }
 
     /**
@@ -410,5 +486,35 @@ trait InteractsWithInput
         }
 
         return $this->$source->get($key, $default);
+    }
+
+    /**
+     * Dump the request items and end the script.
+     *
+     * @param  array|mixed  $keys
+     * @return void
+     */
+    public function dd(...$keys)
+    {
+        $keys = is_array($keys) ? $keys : func_get_args();
+
+        call_user_func_array([$this, 'dump'], $keys);
+
+        exit(1);
+    }
+
+    /**
+     * Dump the items.
+     *
+     * @param  array  $keys
+     * @return $this
+     */
+    public function dump($keys = [])
+    {
+        $keys = is_array($keys) ? $keys : func_get_args();
+
+        VarDumper::dump(count($keys) > 0 ? $this->only($keys) : $this->all());
+
+        return $this;
     }
 }

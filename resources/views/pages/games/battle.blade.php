@@ -1,3 +1,5 @@
+
+
 <div class="title flex flex-between flex-align-center">
     <span>
         <svg class="icon">
@@ -7,13 +9,13 @@
         </svg>
         Battle
     </span>
-    <a href="/history/battle">История игр</a>
+    <a href="/history/battle">{{ __('platform.battle.button.history') }}</a>
 </div>
 
 <div class="content">
     <div class="alert">
-        <span>Активируйте Реферальный/Промо код и получите 5 рублей на баланс.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
+        <span>{{ __('platform.battle.warning.referral') }}</span>
+        <span class="alert-close tooltip" data-close="alert" title="{{ __('platform.close') }}">×</span>
     </div>
     <div class="game-content battle flex flex-between flex-wrap">
         <div class="top-battle">
@@ -66,13 +68,13 @@
                     </div>
                     <div class="bet methods-value">
                         @guest
-                        <input type="text" id="amount" value="Авторизуйтесь." disabled/>
+                        <input type="text" id="amount" value="{{ __('platform.login') }}." disabled/>
                         <div class="buttons flex flex-between">
-                            <a  class="red makeBet" onclick="$.wnoty({position: 'top-right',type: 'error',message: 'Авторизуйтесь!'});">Поставить</a>
-                            <a  class="blue makeBet" onclick="$.wnoty({position: 'top-right',type: 'error',message: 'Авторизуйтесь!'});">Поставить</a>
+                            <a  class="red makeBet" onclick="$.wnoty({position: 'top-right',type: 'error',message: '{{ __('platform.login') }}!'});"> {{ __('platform.button.placebet.battle') }} {{ __('platform.battle.red') }}</a>
+                            <a  class="blue makeBet" onclick="$.wnoty({position: 'top-right',type: 'error',message: '{{ __('platform.login') }}!'});"> {{ __('platform.button.placebet.battle') }} {{ __('platform.battle.blue') }}</a>
                         </div>
                         @else 
-                        <input type="text" id="amount" placeholder="Введите сумму...">
+                        <input type="text" id="amount" placeholder="{{ __('platform.wageramount') }}">
                         <ul>
                             <li><a  data-value="1" data-method="plus">+1</a></li>
                             <li><a  data-value="10" data-method="plus">+10</a></li>
@@ -80,12 +82,12 @@
                             <li><a  data-value="1000" data-method="plus">+1000</a></li>
                             <li><a  data-value="2" data-method="multiply">x2</a></li>
                             <li><a  data-value="2" data-method="divide">1/2</a></li>
-                            <li><a  data-method="all">макс</a></li>
-                            <li><a  data-method="clear">очистить</a></li>
+                            <li><a  data-method="all">{{ __('platform.button.max') }}</a></li>
+                            <li><a  data-method="clear">{{ __('platform.button.clearbet') }}</a></li>
                         </ul>
                         <div class="buttons flex flex-between">
-                            <a  class="red makeBet" onclick="$.bet('red')">Поставить</a>
-                            <a  class="blue makeBet" onclick="$.bet('blue')">Поставить</a>
+                            <a  class="red makeBet" onclick="$.bet('red')">{{ __('platform.button.placebet.battle') }} {{ __('platform.battle.red') }}</a>
+                            <a  class="blue makeBet" onclick="$.bet('blue')">{{ __('platform.button.placebet.battle') }} {{ __('platform.battle.blue') }}</a>
                         </div>
                         @endguest
                     </div>
@@ -109,7 +111,7 @@
                                 <div class="image" style="background: url({{$b->user->avatar}}) no-repeat center center / 100%;"></div>
                             </div>
                             <div class="username">{{$b->user->username}}</div>
-                            <div class="tickets"><span>внес</span></div>
+                            <div class="tickets"><span>{{ __('platform.battle.tickets') }}</span></div>
                             <div class="amount">{{$b->price}} <i class="fas fa-coins"></i></div>
                         </div>
                     </div>
@@ -129,7 +131,7 @@
                                 <div class="image" style="background: url({{$b->user->avatar}}) no-repeat center center / 100%;"></div>
                             </div>
                             <div class="username">{{$b->user->username}}</div>
-                            <div class="tickets"><span>внес</span></div>
+                            <div class="tickets"><span>{{ __('platform.battle.tickets') }}</span></div>
                             <div class="amount">{{$b->price}} <i class="fas fa-coins"></i></div>
                         </div>
                     </div>

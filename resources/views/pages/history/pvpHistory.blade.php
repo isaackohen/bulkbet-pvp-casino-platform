@@ -1,13 +1,9 @@
 <div class="title flex flex-between flex-align-center">
-    <span>История игр (PVP)</span>
-    <a href="/pvp">Назад</a>
+    <span>{{ __('platform.pvp.history') }} (PVP)</span>
+    <a href="/pvp">{{ __('platform.back') }}</a>
 </div>
 
 <div class="content pvp">
-    <div class="alert">
-        <span>Активируйте Реферальный/Промо код и получите 5 рублей на баланс.</span>
-        <span class="alert-close tooltip" data-close="alert" title="Закрыть">×</span>
-    </div>
    @foreach($games as $game)
                 <div class="game-coin flip_block_{{$game->id}}">
                     <div class="top">
@@ -45,14 +41,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="win-ticket tooltip" title="Счастливый билет">
+                            <div class="win-ticket tooltip" title="{{ __('platform.pvp.winningticket') }}">
                                 <span>{{$game->winner_ticket}} <i class="fas fa-ticket-alt"></i></span>
                             </div>
                             <div class="info block">
                                 <span><i class="fas fa-coins"></i> {{$game->price}}</span>
                             </div>
 							<div class="status block"  style="border: 0;">
-								<a href="/fair/{{$game->hash}}" class="check">Проверить</a>
+								<a href="/fair/{{$game->hash}}" class="check">{{ __('platform.verifyfairness') }}</a>
 							</div>
                         </div>
                     </div>
