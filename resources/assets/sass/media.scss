@@ -1,0 +1,118 @@
+@media only screen and (max-width: 1675px) {
+    main {width: 100%;}
+    .chat {height: 375px;right: 45px;border-radius: 7px 7px 0px 0px;}
+    .chat .open {display: block;visibility: visible;top: -38px;transform: rotate(90deg);left: calc(50% - 25px);}
+    .chat-closed .chat {transform: translateY(375px);}
+    .chat.fixed {height: 375px;}
+    .game-coin .top .left {flex-wrap: wrap;justify-content: center;}
+    .game-coin .top .left .players {width: 100%;justify-content: center;margin-bottom: 15px;flex-wrap: wrap;height: auto;}
+    .game-coin .top {padding-bottom: 15px;}
+    .game-coin .top .avatars {margin-right: 25px;}
+}
+
+@media only screen and (max-width: 1375px) {
+    .logotype {display: none;visibility: hidden;}
+    .game-content .top-battle {flex-wrap: wrap;}
+    .game-content .battle-slider.info {width: 100%;}
+    .game-content .bg-2 {margin: 10px 0px;}
+    .game-content .battle-slider.battle {width: 90%;}
+}
+
+@media only screen and (max-width: 1225px) {
+    .game-content .bets .bet {flex-wrap: wrap;}
+    .game-content .bets .left {width: 100%;}
+    .game-content .bets .bet .date {padding: 2px 10px;background: #3c4358;border-radius: 50px;font-size: 13px;position: absolute;top: -10px;right: 10px;}
+}
+
+@media only screen and (max-width: 1185px) {
+    .game-content .game-progress .progress {transform: scale(0.85);}
+    .game-content .game-progress {margin-right: 20px;}
+}
+
+
+@media only screen and (max-width: 1125px) {
+    .leftside {transform: translateX(-300px);background-color: #3a4154;}
+    .container {width: 100%;}
+    .header {padding-left: 0;}
+    .leftside .open {display: block;visibility: visible;}
+}
+
+@media only screen and (max-width: 925px) {
+    .rooms ul li a .name {display: none;visibility: hidden;}
+    .rooms ul li {margin: 0;}
+    .rooms {margin-right: 0;}
+    .game-content.pvp .create-game {flex-wrap: wrap;}
+    .game-content.pvp .create-game input {margin-bottom: 15px;width: 100%;}
+    .game-content.pvp .create-game ul {margin-bottom: 15px;}
+    .game-content.pvp .create-game a.create {width: 100%;}
+    .game-content.pvp .create-game {padding: 20px 30px;}
+    .refferal_content .block {width: 100%;}
+    .refferal_content .block .input input[type='text'] {width: 70%;}
+}
+
+@media only screen and (max-width: 825px) {
+    .game-content .game-progress {width: 100%;margin-right: 0;flex-wrap: nowrap;justify-content: space-between;align-items: center;margin-bottom: 30px;}
+    .game-content .game-progress .progress {margin-bottom: 0;}
+    .game-content {flex-wrap: wrap;}
+    .content .slider {margin-bottom: 15px;}
+    .alert {margin-bottom: 20px!important;}
+    .game-content .users-in-game:after {background: linear-gradient(to left, #753d3d00,#353a4c);}
+    .game-content .users-in-game:before {background: linear-gradient(to right, #753d3d00,#353a4c);}
+    .game-content .battle-slider.battle {width: 100%;}
+    .game-content .battle-slider.hist {width: 100%;}
+    .game-content .bg-2 {height: auto;}
+    .game-content .battle-slider .history {width: 100%;height: 20px;}
+    .game-content .battle-slider .history .hist {width: 45px;height: 17px;margin: 3px 3.6px;}
+    .game-content .battle-slider .history:before {content: none;}
+    .game-content .bets {flex-wrap: wrap;}
+    .game-content.battle .bets .team {width: 100%;}
+}
+
+@media only screen and (max-width: 675px) {
+    .game-content .game-progress {flex-wrap: wrap; justify-content: center;}
+    .game-content .game-progress .block {width: 100%;}
+    .game-content .game-progress {margin-bottom: 50px;}
+    .game-coin .top .left .user, .game-coin .top .left .vs {width: 100%;margin: 10px 0px;}
+    .group {display: none;visibility: hidden;}
+    .dice .dice-loop .left {margin-right: 0;width: 100%;}
+    .dice .dice-loop .right {width: 100%;}
+}
+
+@media only screen and (max-width: 610px) {
+    .header .left {display: flex;justify-content: space-between;}
+    .header {padding-right: 20px;}
+    .alert {line-height: 25px;padding: 10px 25px;}
+    .content {padding: 20px;}
+    .refferal_content .block .input input[type='text'] {width: 100%;margin-bottom: 10px;}
+}
+
+@media only screen and (max-width: 510px) {
+    .game-content .bets .left {flex-wrap: wrap;justify-content: center;line-height: 30px;}
+    .game-content .bets .left div {width: 100%;text-align: center;}
+    .game-content .bets .left .ava {margin-bottom: 5px;}
+    .game-content .bets .bet {padding: 15px 0px;}
+    .game-content .bets .fair-game {line-height: 25px;}
+    .chat {width: 100%;right: 0;border-radius: 0;}
+    .chat .open {right: 25px;left: inherit;}
+    .chat-mobile .chat {height: calc(100% - 72px);position: fixed;}
+    .chat-mobile .chat .open {top: -10px;border-radius: 0px 5px 5px 0px;}
+    .chat-mobile .chat.fixed {height: 100%;}
+    .refferal_content .block .info {flex-wrap: wrap;}
+    .refferal_content .block .info span {width: 100%;margin-bottom: 15px;}
+}
+
+@media only screen and (max-width: 430px) {
+    .menu {display: none;visibility: hidden;}
+    .rooms {width: 100%;}
+    .rooms ul li {width: 33.3%;}
+    .title a {width: 100%;margin-top: 20px;text-align: center;}
+    .title {justify-content: center;flex-wrap: wrap;}
+    .game-content .battle-slider .bet .buttons {flex-wrap: wrap;}
+    .game-content .battle-slider .bet .buttons a {width: 100%;margin-top: 5px;}
+    .game-content .battle-slider .slider-svg {transform: scale(0.8);}
+    .game-coin .top .left .status {border: 0;}
+    .game-content.double .battle-slider .bet .buttons a {width: 100%;}
+    .header .online {display: none;visibility: hidden;} 
+    .header .left {width: 100%;}
+    .header {padding-right: 0;}
+}
