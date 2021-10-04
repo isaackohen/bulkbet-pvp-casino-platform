@@ -17,14 +17,12 @@ class Moder
 
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check())
-        {
+        if ($this->auth->check()) {
             if ($this->auth->user()->access == 'admin' || $this->auth->user()->access == 'moder') {
                 return $next($request);
             }
         }
 
         return new RedirectResponse(url('/'));
-
     }
 }

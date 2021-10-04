@@ -17,14 +17,12 @@ class Admin
 
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check())
-        {
+        if ($this->auth->check()) {
             if ($this->auth->user()->access == 'admin') {
                 return $next($request);
             }
         }
 
         return new RedirectResponse(url('/'));
-
     }
 }
