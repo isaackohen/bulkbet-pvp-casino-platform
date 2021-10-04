@@ -1,7 +1,10 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -12,7 +15,7 @@
         "laravel/framework": "^6.0",
         "laravel/helpers": "^1.4",
         "laravel/tinker": "^1.0",
-        "laravel/ui": "^1.2",
+        "laravel/ui": "^2.0",
         "predis/predis": "^1.1",
         "socialiteproviders/vkontakte": "^4.0",
         "yajra/laravel-datatables-oracle": "~9.0"
@@ -41,7 +44,7 @@
     "extra": {
         "laravel": {
             "dont-discover": [
-				"laravel/dusk" 
+                "laravel/dusk"
             ]
         }
     },
