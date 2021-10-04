@@ -43,7 +43,6 @@ class PvpController extends Controller
     {
         $coin = Pvp::select('price')->where('status', 0)->sum('price');
         if (! is_null($coin)) {
-            $coin;
         } else {
             $coin = 0;
         }
